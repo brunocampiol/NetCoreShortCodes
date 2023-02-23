@@ -9,7 +9,17 @@
 //_ = AsyncClass.SkipLinesCompliantAsync(null, 0);
 
 // Throws exception
-var tasks = new List<Task>();
-tasks.Add(AsyncClass.SkipLinesNonCompliantAsync(null, 0));
-tasks.Add(AsyncClass.SkipLinesCompliantAsync(null, 0));
-await Task.WhenAll(tasks);
+//var tasks = new List<Task>();
+//tasks.Add(AsyncClass.SkipLinesNonCompliantAsync(null, 0));
+//tasks.Add(AsyncClass.SkipLinesCompliantAsync(null, 0));
+//await Task.WhenAll(tasks);
+
+var endpoint = new Uri("http://brunocampiol.github.io/");
+
+var asyncHttp = new AsyncHttp();
+var httpResponseCompliant = asyncHttp.GetHttpResponseCompliantAsync(endpoint);
+var httpResponseCompliantAwait = await asyncHttp.GetHttpResponseCompliantAsync(endpoint);
+
+
+
+

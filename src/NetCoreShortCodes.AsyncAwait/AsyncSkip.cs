@@ -1,6 +1,6 @@
 ﻿namespace NetCoreShortCodes.AsyncAwait
 {
-    internal static class AsyncClass
+    internal static class AsyncSkip
     {
         // Because of the way async/await methods are rewritten by the compiler,
         // any exceptions thrown during the parameters check will happen only
