@@ -5,20 +5,31 @@ namespace NetCoreShortCodes.LogMethodTimming.Service
 {
     public sealed class MyService
     {
-        private readonly Random _random = new Random(420);
-
         public MyService()
         {
             
         }
 
-        // Attribute 'Time' here logs time to trace
-        [Time]
+        // Attribute 'Time' here logs in VisualStudio Output
+        // look for Debug output from that panel
+        [Time] 
         public async Task<HttpStatusCode> GetHttpStatusCode()
         {
-            var miliseconds = _random.NextDouble();
-            await Task.Delay(TimeSpan.FromMilliseconds(miliseconds));
-            return HttpStatusCode.OK;
+            var nextInt = Random.Shared.Next(3, 40);
+            await Task.Delay(nextInt); // adds random delay
+
+            switch (nextInt)
+            {
+                case int n when (n < 10):
+                    return HttpStatusCode.Accepted;
+                case int n when (n < 20):
+                    return HttpStatusCode.NoContent;
+                case int n when (n < 30):
+                    return HttpStatusCode.BadRequest;
+                default:
+                    return HttpStatusCode.OK;
+            }
+
         }
     }
 }

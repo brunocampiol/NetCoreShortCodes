@@ -1,6 +1,11 @@
 ﻿using NetCoreShortCodes.LogMethodTimming.Service;
 
+// CASE 1 - simple log to Visual Studio output
 var myservice = new MyService();
-var response = await myservice.GetHttpStatusCode();
+var loopCount = 10;
 
-Console.WriteLine(response);
+for (int i = 0; i < loopCount; i++)
+{
+    var response = await myservice.GetHttpStatusCode();
+    Console.WriteLine(response);
+}
