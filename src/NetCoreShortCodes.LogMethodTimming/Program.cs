@@ -1,7 +1,7 @@
 ﻿using NetCoreShortCodes.LogMethodTimming.Service;
 
 // CASE 1 - simple log to Visual Studio output
-var myservice = new MyService();
+var myservice = new MyServiceSimple();
 var loopCount = 10;
 
 for (int i = 0; i < loopCount; i++)

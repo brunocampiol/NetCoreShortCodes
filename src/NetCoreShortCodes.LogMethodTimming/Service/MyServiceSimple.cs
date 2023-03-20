@@ -3,9 +3,9 @@ using System.Net;
 
 namespace NetCoreShortCodes.LogMethodTimming.Service
 {
-    public sealed class MyService
+    public sealed class MyServiceSimple
     {
-        public MyService()
+        public MyServiceSimple()
         {
             
         }
