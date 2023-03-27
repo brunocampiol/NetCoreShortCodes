@@ -31,5 +31,23 @@ namespace NetCoreShortCodes.LogMethodTimming.Service
             }
 
         }
+
+        [Time("Parameter(s): '{millisecondsDelay}' milliseconds")]
+        public async Task<HttpStatusCode> GetHttpStatusCode(int millisecondsDelay)
+        {
+            await Task.Delay(millisecondsDelay);
+
+            switch (millisecondsDelay)
+            {
+                case int n when (n < 10):
+                    return HttpStatusCode.Accepted;
+                case int n when (n < 20):
+                    return HttpStatusCode.NoContent;
+                case int n when (n < 30):
+                    return HttpStatusCode.BadRequest;
+                default:
+                    return HttpStatusCode.OK;
+            }
+        }
     }
 }
