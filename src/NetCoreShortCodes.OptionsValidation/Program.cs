@@ -27,6 +27,6 @@ builder.Services.AddOptions<ExampleFluentOptions>()
 var app = builder.Build();
 
 //app.MapGet("/", () => "Hello World!");
-app.MapGet("/", (IOptions<ExampleDataAnnotationsOptions> options) => options.Value.Message);
+app.MapGet("/", (IOptions<ExampleFluentOptions> options) => options.Value.Message);
 
 app.Run();

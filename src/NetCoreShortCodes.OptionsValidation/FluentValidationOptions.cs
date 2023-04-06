@@ -47,23 +47,6 @@ namespace NetCoreShortCodes.OptionsValidation
                 $"Options validation failed for '{x.PropertyName}' with error '{x.ErrorMessage}'.");
 
             return ValidateOptionsResult.Fail(errors);
-
-            /*
-            var validationResults = new List<ValidationResult>();
-            if (Validator.TryValidateObject(options, new ValidationContext(options), validationResults, validateAllProperties: true))
-            {
-                return ValidateOptionsResult.Success;
-            }
-
-            string typeName = options.GetType().Name;
-            var errors = new List<string>();
-            foreach (ValidationResult result in validationResults)
-            {
-                errors.Add($"DataAnnotation validation failed for '{typeName}' members: '{string.Join(",", result.MemberNames)}' with the error: '{result.ErrorMessage}'.");
-            }
-
-            return ValidateOptionsResult.Fail(errors);
-            */
         }
     }
 }
