@@ -2,7 +2,7 @@
 
 namespace NetCoreShortCodes.OptionsValidation.Options
 {
-    // Options 
+    // Example class that requires the .ValidateDataAnnotations() on Program.cs
     public class ExampleDataAnnotationsOptions
     {
         public const string SectionName = "ExampleDataAnnotationsOptions";
