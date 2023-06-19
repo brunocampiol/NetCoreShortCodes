@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreShortCodes.ClassAndS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreShortCodes.LogMethodTimming", "src\NetCoreShortCodes.LogMethodTimming\NetCoreShortCodes.LogMethodTimming.csproj", "{20A802E4-37AC-45D8-AC1D-289D0978D578}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreShortCodes.OptionsValidation", "src\NetCoreShortCodes.OptionsValidation\NetCoreShortCodes.OptionsValidation.csproj", "{08000675-613D-4146-BB24-6B6E2D79A456}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreShortCodes.OptionsValidation", "src\NetCoreShortCodes.OptionsValidation\NetCoreShortCodes.OptionsValidation.csproj", "{08000675-613D-4146-BB24-6B6E2D79A456}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreShortCodes.API", "src\NetCoreShortCodes.API\NetCoreShortCodes.API.csproj", "{93C6A3AF-1A64-4147-909E-096B1BC5CEDB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{08000675-613D-4146-BB24-6B6E2D79A456}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08000675-613D-4146-BB24-6B6E2D79A456}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08000675-613D-4146-BB24-6B6E2D79A456}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93C6A3AF-1A64-4147-909E-096B1BC5CEDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93C6A3AF-1A64-4147-909E-096B1BC5CEDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93C6A3AF-1A64-4147-909E-096B1BC5CEDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93C6A3AF-1A64-4147-909E-096B1BC5CEDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
