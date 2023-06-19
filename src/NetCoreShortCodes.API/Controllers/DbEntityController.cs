@@ -4,7 +4,6 @@ using NetCoreShortCodes.API.Repositories;
 
 namespace NetCoreShortCodes.API.Controllers
 {
-
     [ApiController]
     [Route("api/[controller]")]
     public class DbEntityController : ControllerBase
@@ -45,6 +44,30 @@ namespace NetCoreShortCodes.API.Controllers
         public async Task<IActionResult> Create([FromBody] DbEntity dbEntity)
         {
             await _dbEntityRepository.CreateAsync(dbEntity);
+            return NoContent();
+        }
+
+        /// <summary>
+        /// Update DbEntity entry
+        /// </summary>
+        /// <returns></returns>
+        [HttpPatch]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> Update([FromBody] DbEntity dbEntity)
+        {
+            await _dbEntityRepository.UpdateAsync(dbEntity);
+            return NoContent();
+        }
+
+        /// <summary>
+        /// Update DbEntity entry
+        /// </summary>
+        /// <returns></returns>
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _dbEntityRepository.DeleteAsync(id);
             return NoContent();
         }
     }

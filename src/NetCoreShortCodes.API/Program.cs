@@ -1,3 +1,5 @@
+using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using NetCoreShortCodes.API.Database;
 using NetCoreShortCodes.API.Repositories;
 
@@ -5,16 +7,16 @@ var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
 
 // Add services to the container.
-builder.Services.AddHealthChecks();
+builder.Services.AddHealthChecks()
+                .AddSqlite(config["Database:ConnectionString"]);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IDbConnectionFactory>(_ =>
-    new SqliteConnectionFactory(config.GetValue<string>("Database:ConnectionString")));
+    new SqliteConnectionFactory(config["Database:ConnectionString"]));
 builder.Services.AddSingleton<DatabaseInitializer>();
 builder.Services.AddSingleton<IDbEntityRepository, DbEntityRepository>();
-//builder.Services.AddSingleton<ICustomerService, CustomerService>();
 
 var app = builder.Build();
 
@@ -25,7 +27,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapHealthChecks("/_health");
+app.MapHealthChecks("/_health", new HealthCheckOptions
+{
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+});
+
 app.UseAuthorization();
 app.MapControllers();
 
