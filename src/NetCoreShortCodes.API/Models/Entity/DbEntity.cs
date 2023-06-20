@@ -5,20 +5,7 @@
     /// </summary>
     public class DbEntity
     {
-        public int Id { get; set; }
-        public string Value { get; set; }
-
-        public DbEntity()
-        {
-            Value = string.Empty;
-        }
-
-        public DbEntity(int id, string value)
-        {
-            ArgumentNullException.ThrowIfNull(value);
-
-            Id = id;
-            Value = value;
-        }
+        public int Id { get; init; }
+        public string Value { get; init; } = default!;
     }
 }

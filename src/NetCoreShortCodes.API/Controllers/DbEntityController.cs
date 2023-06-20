@@ -6,6 +6,7 @@ namespace NetCoreShortCodes.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Produces("application/json")]
     public class DbEntityController : ControllerBase
     {
         private readonly IDbEntityRepository _dbEntityRepository;
