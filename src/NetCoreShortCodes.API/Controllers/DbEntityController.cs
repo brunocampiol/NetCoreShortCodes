@@ -60,7 +60,7 @@ namespace NetCoreShortCodes.API.Controllers
         }
 
         /// <summary>
-        /// Update DbEntity entry
+        /// Delete DbEntity entry
         /// </summary>
         /// <returns></returns>
         [HttpDelete("{id}")]

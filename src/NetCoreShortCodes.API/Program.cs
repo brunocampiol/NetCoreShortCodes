@@ -1,7 +1,9 @@
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.OpenApi.Models;
 using NetCoreShortCodes.API.Database;
 using NetCoreShortCodes.API.Repositories;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
@@ -10,8 +12,23 @@ var config = builder.Configuration;
 builder.Services.AddHealthChecks()
                 .AddSqlite(config["Database:ConnectionString"]);
 builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddEndpointsApiExplorer(); // only required for mininal APIs
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "Example API",
+        Description = "Example minimal API",
+        Contact = new OpenApiContact
+        {
+            Name = "Me",
+            Url = new Uri("https://brunocampiol.github.io/about.html")
+        }
+    });
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+});
 
 builder.Services.AddSingleton<IDbConnectionFactory>(_ =>
     new SqliteConnectionFactory(config["Database:ConnectionString"]));
