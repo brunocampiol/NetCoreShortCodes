@@ -12,7 +12,7 @@ namespace NetCoreShortCodes.ClassAndStruct
         {
             for (int i = 0; i < _itemsSize; i++)
             {
-                var myClass = new MyClass()
+                var myClass = new MyClass("my class")
                 {
                     Name = _random.Next().ToString()
                 };

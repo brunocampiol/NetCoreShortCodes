@@ -23,7 +23,7 @@ namespace NetCoreShortCodes.Benchmark
         {
             for (int i = 0; i < stringList.Count; i++)
             {
-
+                // fake operation
             }
         }
 
@@ -32,7 +32,7 @@ namespace NetCoreShortCodes.Benchmark
         {
             for (int i = 0; i < stringList.Count(); i++)
             {
-
+                // fake operation
             }
         }
 
@@ -41,7 +41,7 @@ namespace NetCoreShortCodes.Benchmark
         {
             foreach (var item in stringList)
             {
-
+                // fake operation
             }
         }
 
