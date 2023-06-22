@@ -34,12 +34,14 @@ builder.Services.AddSingleton<IDbConnectionFactory>(_ =>
     new SqliteConnectionFactory(config["Database:ConnectionString"]));
 builder.Services.AddSingleton<DatabaseInitializer>();
 builder.Services.AddSingleton<IDbEntityRepository, DbEntityRepository>();
+builder.Services.AddSingleton<IUserRepository, UserRepository>();
 
 var app = builder.Build();
 
 // Register middlewares (middlwares are sequential)
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
@@ -49,7 +51,7 @@ app.MapHealthChecks("/_health", new HealthCheckOptions
     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
 });
 
-app.UseAuthorization();
+//app.UseAuthorization();
 app.MapControllers();
 
 var databaseInitializer = app.Services.GetRequiredService<DatabaseInitializer>();
