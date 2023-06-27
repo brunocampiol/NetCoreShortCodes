@@ -16,7 +16,9 @@ namespace NetCoreShortCodes.API.Repositories
         public async Task<bool> CreateAsync(User user)
         {
             using var connection = await _connectionFactory.CreateConnectionAsync();
-            var result = await connection.ExecuteAsync("INSERT INTO Users (Karma, Username) VALUES (@Karma, @Username)", user);
+            var result = await connection.ExecuteAsync(@"INSERT INTO Users (IsActive, Karma, Username, DateCreated) 
+                                                        VALUES (@IsActive, @Karma, @Username, @DateCreated)",
+                                                        user);
             return result == 1;
         }
 

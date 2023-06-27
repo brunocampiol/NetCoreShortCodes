@@ -13,12 +13,13 @@ namespace NetCoreShortCodes.API.Database
 
         public async Task InitializeAsync()
         {
-            //Id CHAR(36) PRIMARY KEY, 
-            //IsActive INTEGER NOT NULL,
+            // Id CHAR(36) PRIMARY KEY,
             using var connection = await _connectionFactory.CreateConnectionAsync();
-            await connection.ExecuteAsync(@"CREATE TABLE IF NOT EXISTS Users (         
+            await connection.ExecuteAsync(@"CREATE TABLE IF NOT EXISTS Users (              
+                                            IsActive INTEGER NOT NULL,
                                             Karma INTEGER NOT NULL,
-                                            Username TEXT NOT NULL)");
+                                            Username TEXT NOT NULL,
+                                            DateCreated TEXT NOT NULL)");
 
             await connection.ExecuteAsync(@"CREATE TABLE IF NOT EXISTS DbEntity (
                                             Id INTEGER PRIMARY KEY,
