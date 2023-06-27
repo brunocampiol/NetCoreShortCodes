@@ -21,9 +21,9 @@ namespace NetCoreShortCodes.API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public async Task<User?> Get(Guid id)
+        public async Task<User?> Get(string username)
         {
-            return await _userRepository.GetAsync(id);
+            return await _userRepository.GetAsync(username);
         }
 
         /// <summary>
@@ -54,9 +54,9 @@ namespace NetCoreShortCodes.API.Controllers
         /// <returns></returns>
         [HttpPatch]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> Update([FromBody] User dbEntity)
+        public async Task<IActionResult> Update([FromBody] User user)
         {
-            await _userRepository.UpdateAsync(dbEntity);
+            await _userRepository.UpdateAsync(user);
             return NoContent();
         }
 
@@ -66,9 +66,9 @@ namespace NetCoreShortCodes.API.Controllers
         /// <returns></returns>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> Delete(string username)
         {
-            await _userRepository.DeleteAsync(id);
+            await _userRepository.DeleteAsync(username);
             return NoContent();
         }
     }

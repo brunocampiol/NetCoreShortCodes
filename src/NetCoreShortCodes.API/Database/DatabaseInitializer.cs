@@ -14,6 +14,7 @@ namespace NetCoreShortCodes.API.Database
         public async Task InitializeAsync()
         {
             // Id CHAR(36) PRIMARY KEY,
+            // DateOfBirth TEXT,
             using var connection = await _connectionFactory.CreateConnectionAsync();
             await connection.ExecuteAsync(@"CREATE TABLE IF NOT EXISTS Users (              
                                             IsActive INTEGER NOT NULL,

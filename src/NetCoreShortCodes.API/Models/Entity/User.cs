@@ -2,6 +2,7 @@
 {
     public class User
     {
+        // TODO fix the guid type on sqlite
         //public Guid Id { get; init; } = Guid.NewGuid();
         public bool IsActive { get; init; }
         public int Karma { get; init; }
