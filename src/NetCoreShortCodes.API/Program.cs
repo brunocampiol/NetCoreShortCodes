@@ -22,7 +22,7 @@ builder.Services.AddSwaggerGen(options =>
         Description = "Example minimal API",
         Contact = new OpenApiContact
         {
-            Name = "Me",
+            Name = "BrunoCampiol",
             Url = new Uri("https://brunocampiol.github.io/about.html")
         }
     });
