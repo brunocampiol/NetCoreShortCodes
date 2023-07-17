@@ -16,8 +16,11 @@
 // Standard C# publish
 // $ dotnet publish -r win-x64 --self-contained -c Release
 // $ dotnet publish -r win-x64 --self-contained -c Release -p:PublishReadToRun=true -p:PublishSingleFile=true
+// $ dotnet publish -r linux-x64 --self-contained -c Release -p:PublishReadToRun=true -p:PublishSingleFile=true
+// $ dotnet publish -r linux-arm --self-contained -c Release -p:PublishReadToRun=true -p:PublishSingleFile=true
 
 // Generates native code for win-x64
+// https://learn.microsoft.com/pt-br/dotnet/core/rid-catalog
 // $ dotnet publish -r win-x64 -c Release -p:PublishAot=true
 
 var sw = Stopwatch.StartNew();
