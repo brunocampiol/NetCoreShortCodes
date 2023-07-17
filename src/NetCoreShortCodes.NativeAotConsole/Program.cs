@@ -5,8 +5,23 @@
 // Limitations of native AOT deployment
 // https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/?tabs=net7#limitations-of-native-aot-deployment
 
+// How to run the app
+// Go to the csproj folder and:
+
+// Native C# 
+// $ dotnet run 29999
+// $ dotnet run 29999 -c Release
+// $ dotnet publish  -c Release
+
+// Standard C# publish
+// $ dotnet publish -r win-x64 --self-contained -c Release
+// $ dotnet publish -r win-x64 --self-contained -c Release -p:PublishReadToRun=true -p:PublishSingleFile=true
+
+// Generates native code for win-x64
+// $ dotnet publish -r win-x64 -c Release -p:PublishAot=true
+
 var sw = Stopwatch.StartNew();
-var targetNumber = (args == null || args.Length == 0) ? 499999 : int.Parse(args[0]);
+var targetNumber = (args == null || args.Length == 0) ? 199999 : int.Parse(args[0]);
 var primeCount = PrintPrimeAndCount(targetNumber);
 
 Console.WriteLine($"There are '{primeCount}' prime numbers in the range from '0' to '{targetNumber}'");
