@@ -12,7 +12,7 @@ var config = builder.Configuration;
 builder.Services.AddHealthChecks()
                 .AddSqlite(config["Database:ConnectionString"]);
 builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer(); // only required for mininal APIs
+builder.Services.AddEndpointsApiExplorer(); // only required for minimal APIs
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo
