@@ -1,8 +1,10 @@
+using Dapper;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.OpenApi.Models;
 using NetCoreShortCodes.API.Database;
 using NetCoreShortCodes.API.Repositories;
+using NetCoreShortCodes.API.Repositories.Dapper;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,8 +36,16 @@ builder.Services.AddSingleton<IDbConnectionFactory>(_ =>
     new SqliteConnectionFactory(config["Database:ConnectionString"]));
 builder.Services.AddSingleton<DatabaseInitializer>();
 builder.Services.AddSingleton<ISqliteNativeDataTypesRepository, SqliteNativeDataTypesRepository>();
+builder.Services.AddSingleton<ISqliteSupportedNetTypesRepository, SqliteSupportedNetTypesRepository>();
 builder.Services.AddSingleton<IDbEntityRepository, DbEntityRepository>();
 builder.Services.AddSingleton<IUserRepository, UserRepository>();
+
+// Adds Dapper support for C# types
+SqlMapper.AddTypeHandler(new GuidHandler());
+SqlMapper.AddTypeHandler(new DateOnlyTypeHandler());
+SqlMapper.AddTypeHandler(new DateTimeOffsetHandler());
+SqlMapper.AddTypeHandler(new TimeOnlyTypeHandler());
+SqlMapper.AddTypeHandler(new TimeSpanHandler());
 
 var app = builder.Build();
 

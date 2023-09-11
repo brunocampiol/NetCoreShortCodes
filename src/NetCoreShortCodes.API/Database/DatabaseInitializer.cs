@@ -25,7 +25,24 @@ namespace NetCoreShortCodes.API.Database
 	                                            MyReal REAL NOT NULL,
 	                                            MyText TEXT NOT NULL
                                             )");
-        
+
+            await connection.ExecuteAsync(@"CREATE TABLE IF NOT EXISTS SqliteSupportedNetTypes 
+                                            (
+                                                MyBool INTERGER NOT NULL,
+                                                MyByte INTERGER NOT NULL,
+                                                MyChar TEXT NOT NULL,
+                                                MyDateOnly TEXT NOT NULL,
+                                                MyDateTime TEXT NOT NULL,
+                                                MyDateTimeOffset TEXT NOT NULL,
+                                                MyDecimal TEXT NOT NULL,
+                                                MyDouble REAL NOT NULL,
+                                                MyGuid TEXT PRIMARY KEY,
+	                                            MyInt INTEGER NOT NULL,
+	                                            MyString TEXT NOT NULL,
+                                                MyTimeOnly TEXT NOT NULL,
+                                                MyTimeSpan TEXT NOT NULL
+                                            )");
+
             await connection.ExecuteAsync(@"CREATE TABLE IF NOT EXISTS Users (              
                                             IsActive INTEGER NOT NULL,
                                             Karma INTEGER NOT NULL,

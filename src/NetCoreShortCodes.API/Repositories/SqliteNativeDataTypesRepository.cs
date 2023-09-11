@@ -4,6 +4,7 @@ using NetCoreShortCodes.API.Models.Entity;
 
 namespace NetCoreShortCodes.API.Repositories
 {
+    // TODO: https://learn.microsoft.com/en-us/dotnet/standard/data/sqlite/async
     public class SqliteNativeDataTypesRepository : ISqliteNativeDataTypesRepository
     {
         private readonly IDbConnectionFactory _connectionFactory;
