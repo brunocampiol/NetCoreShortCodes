@@ -13,9 +13,19 @@ namespace NetCoreShortCodes.API.Database
 
         public async Task InitializeAsync()
         {
-            // Id CHAR(36) PRIMARY KEY,
-            // DateOfBirth TEXT,
+            // https://www.sqlite.org/stricttables.html
+            // SQLite supports a strict typing mode, as of version 3.37.0 (2021-11-27)
+            // The current nuget package for .NET targets version 3.35.5
+            // SELECT sqlite_version()
             using var connection = await _connectionFactory.CreateConnectionAsync();
+
+            await connection.ExecuteAsync(@"CREATE TABLE IF NOT EXISTS SqliteNativeDataTypes 
+                                            (              
+	                                            MyInteger INTEGER PRIMARY KEY,
+	                                            MyReal REAL NOT NULL,
+	                                            MyText TEXT NOT NULL
+                                            )");
+        
             await connection.ExecuteAsync(@"CREATE TABLE IF NOT EXISTS Users (              
                                             IsActive INTEGER NOT NULL,
                                             Karma INTEGER NOT NULL,

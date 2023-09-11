@@ -26,8 +26,6 @@ builder.Services.AddSwaggerGen(options =>
             Url = new Uri("https://brunocampiol.github.io/about.html")
         }
     });
-    // "Assembly.GetExecutingAssembly" should not be called
-    // var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlFilename = $"{typeof(Program).Assembly.GetName().Name}.xml";
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
@@ -35,6 +33,7 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddSingleton<IDbConnectionFactory>(_ =>
     new SqliteConnectionFactory(config["Database:ConnectionString"]));
 builder.Services.AddSingleton<DatabaseInitializer>();
+builder.Services.AddSingleton<ISqliteNativeDataTypesRepository, SqliteNativeDataTypesRepository>();
 builder.Services.AddSingleton<IDbEntityRepository, DbEntityRepository>();
 builder.Services.AddSingleton<IUserRepository, UserRepository>();
 
@@ -45,7 +44,10 @@ if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.EnableTryItOutByDefault();
+    });
 }
 
 app.MapHealthChecks("/_health", new HealthCheckOptions
