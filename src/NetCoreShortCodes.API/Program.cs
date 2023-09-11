@@ -5,7 +5,6 @@ using Microsoft.OpenApi.Models;
 using NetCoreShortCodes.API.Database;
 using NetCoreShortCodes.API.Repositories;
 using NetCoreShortCodes.API.Repositories.Dapper;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
@@ -37,8 +36,6 @@ builder.Services.AddSingleton<IDbConnectionFactory>(_ =>
 builder.Services.AddSingleton<DatabaseInitializer>();
 builder.Services.AddSingleton<ISqliteNativeDataTypesRepository, SqliteNativeDataTypesRepository>();
 builder.Services.AddSingleton<ISqliteSupportedNetTypesRepository, SqliteSupportedNetTypesRepository>();
-builder.Services.AddSingleton<IDbEntityRepository, DbEntityRepository>();
-builder.Services.AddSingleton<IUserRepository, UserRepository>();
 
 // Adds Dapper support for C# types
 SqlMapper.AddTypeHandler(new GuidHandler());
