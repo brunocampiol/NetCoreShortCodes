@@ -4,7 +4,6 @@ using NetCoreShortCodes.API.Repositories;
 
 namespace NetCoreShortCodes.API.Controllers
 {
-    // TODO: fix swagger UI data types in NET
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]
@@ -29,32 +28,16 @@ namespace NetCoreShortCodes.API.Controllers
             return await _repository.GetAllAsync();
         }
 
-        // INPUT FOR POSTMAN
-        //        {
-        //  "myBool": false,
-        //  "myByte": 0,
-        //  "myChar": "A",
-        //  "myDateOnly": "2023-09-11",
-        //  "myDateTime": "2023-09-11T19:02:55.944Z",
-        //  "myDateTimeOffset": "2023-09-11T19:02:55.944Z",
-        //  "myDecimal": 1.000001,
-        //  "myDouble": 1.0000002,
-        //  "myGuid": "3fa85f64-5717-4562-b3fc-2c963f66afa9",
-        //  "myInt": 1,
-        //  "myString": "string",
-        //  "myTimeOnly": "23:59:59.0000000",
-        //  "myTimeSpan": "0.01:00:00.0000000"
-        //}
         [HttpPost]
-        public async Task<bool> Create([FromBody] SqliteSupportedNetTypes dbEntity)
+        public async Task<bool> Create([FromBody] SqliteSupportedNetTypes entity)
         {
-            return await _repository.CreateAsync(dbEntity);
+            return await _repository.CreateAsync(entity);
         }
 
         [HttpPatch]
-        public async Task<bool> Update([FromBody] SqliteSupportedNetTypes dbEntity)
+        public async Task<bool> Update([FromBody] SqliteSupportedNetTypes entity)
         {
-            return await _repository.UpdateAsync(dbEntity);
+            return await _repository.UpdateAsync(entity);
         }
 
         [HttpDelete("{myGuid}")]

@@ -41,18 +41,18 @@ namespace NetCoreShortCodes.API.Controllers
         /// Create SqliteNativeDataTypes entry
         /// </summary>
         [HttpPost]
-        public async Task<bool> Create([FromBody] SqliteNativeDataTypes dbEntity)
+        public async Task<bool> Create([FromBody] SqliteNativeDataTypes entity)
         {
-            return await _repository.CreateAsync(dbEntity);
+            return await _repository.CreateAsync(entity);
         }
 
         /// <summary>
         /// Update SqliteNativeDataTypes entry
         /// </summary>
         [HttpPatch]
-        public async Task<bool> Update([FromBody] SqliteNativeDataTypes dbEntity)
+        public async Task<bool> Update([FromBody] SqliteNativeDataTypes entity)
         {
-            return await _repository.UpdateAsync(dbEntity);
+            return await _repository.UpdateAsync(entity);
         }
 
         /// <summary>

@@ -1,6 +1,7 @@
 using Dapper;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using NetCoreShortCodes.API.Database;
 using NetCoreShortCodes.API.Repositories;
@@ -16,6 +17,24 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer(); // only required for minimal APIs
 builder.Services.AddSwaggerGen(options =>
 {
+    options.MapType<char>(() => new OpenApiSchema
+    {
+        Type = "string",
+        MinLength = 1,
+        MaxLength = 1
+    });
+    options.MapType<TimeOnly>(() => new OpenApiSchema
+    {
+        // TODO: add pattern here
+        Type = "string",
+        Example = new OpenApiString(DateTime.Now.ToString("HH:mm:ss.fffffff"))
+    });
+    options.MapType<TimeSpan>(() => new OpenApiSchema
+    {
+        // TODO: add pattern here
+        Type = "string",
+        Example = new OpenApiString(DateTime.Now.ToString("1.HH:mm:ss.fffffff"))
+    });
     options.SwaggerDoc("v1", new OpenApiInfo
     {
         Version = "v1",
