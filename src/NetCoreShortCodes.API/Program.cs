@@ -19,14 +19,16 @@ builder.Services.AddSwaggerGen(options =>
     {
         Version = "v1",
         Title = "Example API",
-        Description = "Example minimal API",
+        Description = "Example API",
         Contact = new OpenApiContact
         {
             Name = "BrunoCampiol",
             Url = new Uri("https://brunocampiol.github.io/about.html")
         }
     });
-    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    // "Assembly.GetExecutingAssembly" should not be called
+    // var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlFilename = $"{typeof(Program).Assembly.GetName().Name}.xml";
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
 
