@@ -4,10 +4,10 @@ namespace NetCoreShortCodes.API.Repositories
 {
     public interface ISqliteSupportedNetTypesRepository
     {
-        Task<bool> CreateAsync(SqliteSupportedNetTypes entity);
-        Task<bool> DeleteAsync(Guid myGuid);
-        Task<IEnumerable<SqliteSupportedNetTypes>> GetAllAsync();
-        Task<SqliteSupportedNetTypes?> GetAsync(Guid myGuid);
-        Task<bool> UpdateAsync(SqliteSupportedNetTypes entity);
+        bool Create(SqliteSupportedNetTypes entity);
+        bool Delete(Guid myGuid);
+        IEnumerable<SqliteSupportedNetTypes> GetAll();
+        SqliteSupportedNetTypes? Get(Guid myGuid);
+        bool Update(SqliteSupportedNetTypes entity);
     }
 }

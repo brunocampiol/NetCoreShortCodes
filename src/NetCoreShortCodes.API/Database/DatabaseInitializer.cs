@@ -11,22 +11,24 @@ namespace NetCoreShortCodes.API.Database
             _connectionFactory = connectionFactory;
         }
 
-        public async Task InitializeAsync()
+        public void Initialize()
         {
             // https://www.sqlite.org/stricttables.html
             // SQLite supports a strict typing mode, as of version 3.37.0 (2021-11-27)
             // The current nuget package for .NET targets version 3.35.5
             // SELECT sqlite_version()
-            using var connection = await _connectionFactory.CreateConnectionAsync();
+            // Do not use async in SQLite
 
-            await connection.ExecuteAsync(@"CREATE TABLE IF NOT EXISTS SqliteNativeDataTypes 
+            using var connection = _connectionFactory.CreateConnection();
+
+            connection.Execute(@"CREATE TABLE IF NOT EXISTS SqliteNativeDataTypes 
                                             (              
 	                                            MyInteger INTEGER PRIMARY KEY,
 	                                            MyReal REAL NOT NULL,
 	                                            MyText TEXT NOT NULL
                                             )");
 
-            await connection.ExecuteAsync(@"CREATE TABLE IF NOT EXISTS SqliteSupportedNetTypes 
+            connection.Execute(@"CREATE TABLE IF NOT EXISTS SqliteSupportedNetTypes 
                                             (
                                                 MyBool INTERGER NOT NULL,
                                                 MyByte INTERGER NOT NULL,
@@ -42,17 +44,6 @@ namespace NetCoreShortCodes.API.Database
                                                 MyTimeOnly TEXT NOT NULL,
                                                 MyTimeSpan TEXT NOT NULL
                                             )");
-
-            await connection.ExecuteAsync(@"CREATE TABLE IF NOT EXISTS Users (              
-                                            IsActive INTEGER NOT NULL,
-                                            Karma INTEGER NOT NULL,
-                                            Username TEXT NOT NULL,
-                                            DateCreated TEXT NOT NULL)");
-
-            await connection.ExecuteAsync(@"CREATE TABLE IF NOT EXISTS DbEntity (
-                                            Id INTEGER PRIMARY KEY,
-                                            Value TEXT NOT NULL
-                                           )");
         }
     }
 }

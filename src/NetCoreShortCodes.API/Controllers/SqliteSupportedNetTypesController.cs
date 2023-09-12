@@ -17,33 +17,33 @@ namespace NetCoreShortCodes.API.Controllers
         }
 
         [HttpGet("{myGuid}")]
-        public async Task<SqliteSupportedNetTypes?> Get(Guid myGuid)
+        public SqliteSupportedNetTypes? Get(Guid myGuid)
         {
-            return await _repository.GetAsync(myGuid);
+            return _repository.Get(myGuid);
         }
 
         [HttpGet]
-        public async Task<IEnumerable<SqliteSupportedNetTypes>> GetAll()
+        public IEnumerable<SqliteSupportedNetTypes> GetAll()
         {
-            return await _repository.GetAllAsync();
+            return _repository.GetAll();
         }
 
         [HttpPost]
-        public async Task<bool> Create([FromBody] SqliteSupportedNetTypes entity)
+        public bool Create([FromBody] SqliteSupportedNetTypes entity)
         {
-            return await _repository.CreateAsync(entity);
+            return _repository.Create(entity);
         }
 
         [HttpPatch]
-        public async Task<bool> Update([FromBody] SqliteSupportedNetTypes entity)
+        public bool Update([FromBody] SqliteSupportedNetTypes entity)
         {
-            return await _repository.UpdateAsync(entity);
+            return _repository.Update(entity);
         }
 
         [HttpDelete("{myGuid}")]
-        public async Task<bool> Delete(Guid myGuid)
+        public bool Delete(Guid myGuid)
         {
-            return await _repository.DeleteAsync(myGuid);
+            return _repository.Delete(myGuid);
         }
     }
 }

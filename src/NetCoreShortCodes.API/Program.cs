@@ -95,6 +95,6 @@ app.MapHealthChecks("/_health", new HealthCheckOptions
 app.MapControllers();
 
 var databaseInitializer = app.Services.GetRequiredService<DatabaseInitializer>();
-await databaseInitializer.InitializeAsync();
+databaseInitializer.Initialize();
 
 app.Run();

@@ -13,10 +13,10 @@ namespace NetCoreShortCodes.API.Repositories
             _connectionFactory = connectionFactory ?? throw new ArgumentNullException(nameof(connectionFactory));
         }
 
-        public async Task<bool> CreateAsync(SqliteSupportedNetTypes entity)
+        public bool Create(SqliteSupportedNetTypes entity)
         {
-            using var connection = await _connectionFactory.CreateConnectionAsync();
-            var result = await connection.ExecuteAsync(
+            using var connection = _connectionFactory.CreateConnection();
+            var result = connection.Execute(
                 @"INSERT INTO SqliteSupportedNetTypes (MyBool, 
                                                        MyByte, 
                                                        MyChar,
@@ -47,33 +47,33 @@ namespace NetCoreShortCodes.API.Repositories
             return result == 1;
         }
 
-        public async Task<bool> DeleteAsync(Guid myGuid)
+        public bool Delete(Guid myGuid)
         {
-            using var connection = await _connectionFactory.CreateConnectionAsync();
-            var result = await connection.ExecuteAsync(
+            using var connection = _connectionFactory.CreateConnection();
+            var result = connection.Execute(
                 @"DELETE FROM SqliteSupportedNetTypes WHERE MyGuid = @MyGuid",
                 new { MyGuid = myGuid });
             return result == 1;
         }
 
-        public async Task<IEnumerable<SqliteSupportedNetTypes>> GetAllAsync()
+        public SqliteSupportedNetTypes? Get(Guid myGuid)
         {
-            using var connection = await _connectionFactory.CreateConnectionAsync();
-            return await connection.QueryAsync<SqliteSupportedNetTypes>("SELECT * FROM SqliteSupportedNetTypes");
-        }
-
-        public async Task<SqliteSupportedNetTypes?> GetAsync(Guid myGuid)
-        {
-            using var connection = await _connectionFactory.CreateConnectionAsync();
-            return await connection.QuerySingleOrDefaultAsync<SqliteSupportedNetTypes>(
+            using var connection = _connectionFactory.CreateConnection();
+            return connection.QuerySingleOrDefault<SqliteSupportedNetTypes>(
                 "SELECT * FROM SqliteSupportedNetTypes WHERE MyGuid = @MyGuid LIMIT 1",
                 new { MyGuid = myGuid });
         }
 
-        public async Task<bool> UpdateAsync(SqliteSupportedNetTypes entity)
+        public IEnumerable<SqliteSupportedNetTypes> GetAll()
         {
-            using var connection = await _connectionFactory.CreateConnectionAsync();
-            var result = await connection.ExecuteAsync(
+            using var connection = _connectionFactory.CreateConnection();
+            return connection.Query<SqliteSupportedNetTypes>("SELECT * FROM SqliteSupportedNetTypes");
+        }
+
+        public bool Update(SqliteSupportedNetTypes entity)
+        {
+            using var connection = _connectionFactory.CreateConnection();
+            var result = connection.Execute(
                 @"UPDATE SqliteSupportedNetTypes SET MyBool = @MyBool, 
                                                      MyByte = @MyByte,
                                                      MyChar = @MyChar,
@@ -90,5 +90,6 @@ namespace NetCoreShortCodes.API.Repositories
                 entity);
             return result == 1;
         }
+
     }
 }
