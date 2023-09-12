@@ -17,6 +17,8 @@ namespace NetCoreShortCodes.API.Controllers
                 _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
+        // Async
+
         /// <summary>
         /// Gets first or default SqliteNativeDataTypes entry
         /// </summary>
@@ -59,11 +61,42 @@ namespace NetCoreShortCodes.API.Controllers
         /// Delete SqliteNativeDataTypes entry
         /// </summary>
         /// <returns></returns>
-        [HttpDelete("{id}")]
+        [HttpDelete("{myInteger}")]
         public async Task<bool> Delete(int myInteger)
         {
             return await _repository.DeleteAsync(myInteger);
         }
 
+        // Sync
+
+        [HttpGet("sync/{myInteger}")]
+        public SqliteNativeDataTypes? GetSync(int myInteger)
+        {
+            return _repository.Get(myInteger);
+        }
+
+        [HttpGet("sync")]
+        public IEnumerable<SqliteNativeDataTypes> GetAllSync()
+        {
+            return _repository.GetAll();
+        }
+
+        [HttpPost("sync")]
+        public bool CreateSync([FromBody] SqliteNativeDataTypes entity)
+        {
+            return _repository.Create(entity);
+        }
+
+        [HttpPatch("sync")]
+        public bool UpdateSync([FromBody] SqliteNativeDataTypes entity)
+        {
+            return _repository.Update(entity);
+        }
+
+        [HttpDelete("sync/{myInteger}")]
+        public bool DeleteSync(int myInteger)
+        {
+            return _repository.Delete(myInteger);
+        }
     }
 }

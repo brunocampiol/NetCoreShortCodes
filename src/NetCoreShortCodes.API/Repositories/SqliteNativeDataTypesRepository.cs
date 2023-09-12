@@ -56,5 +56,48 @@ namespace NetCoreShortCodes.API.Repositories
                 sqliteNativeDataTypes);
             return result == 1;
         }
+
+        public bool Create(SqliteNativeDataTypes sqliteNativeDataTypes)
+        {
+            using var connection = _connectionFactory.CreateConnection();
+            var result = connection.Execute(
+                @"INSERT INTO SqliteNativeDataTypes (MyInteger, MyReal, MyText) 
+                VALUES (@MyInteger, @MyReal, @MyText)",
+                sqliteNativeDataTypes);
+            return result == 1;
+        }
+
+        public bool Delete(int myInteger)
+        {
+            using var connection = _connectionFactory.CreateConnection();
+            var result = connection.Execute(
+                @"DELETE FROM SqliteNativeDataTypes WHERE MyInteger = @MyInteger",
+                new { MyInteger = myInteger });
+            return result == 1;
+        }
+
+        public SqliteNativeDataTypes? Get(int myInteger)
+        {
+            using var connection = _connectionFactory.CreateConnection();
+            return connection.QuerySingleOrDefault<SqliteNativeDataTypes>(
+                "SELECT * FROM SqliteNativeDataTypes WHERE MyInteger = @MyInteger LIMIT 1",
+                new { MyInteger = myInteger });
+        }
+
+        public IEnumerable<SqliteNativeDataTypes> GetAll()
+        {
+            using var connection = _connectionFactory.CreateConnection();
+            return connection.Query<SqliteNativeDataTypes>("SELECT * FROM SqliteNativeDataTypes");
+        }
+
+        public bool Update(SqliteNativeDataTypes sqliteNativeDataTypes)
+        {
+            using var connection = _connectionFactory.CreateConnection();
+            var result = connection.Execute(
+                @"UPDATE SqliteNativeDataTypes SET MyReal = @MyReal, MyText = @MyText 
+                WHERE MyInteger = @MyInteger",
+                sqliteNativeDataTypes);
+            return result == 1;
+        }
     }
 }
