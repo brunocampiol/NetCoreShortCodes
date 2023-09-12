@@ -26,19 +26,19 @@ builder.Services.AddSwaggerGen(options =>
     options.MapType<TimeOnly>(() => new OpenApiSchema
     {
         Type = "string",
-        Pattern = "^(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d{1,7})?$"
-        //Example = new OpenApiString(DateTime.Now.ToString("HH:mm:ss.fffffff"))
+        Pattern = "^(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d{1,7})?$",
+        Example = new OpenApiString(DateTime.Now.ToString("HH:mm:ss.fffffff"))
     });
     options.MapType<TimeSpan>(() => new OpenApiSchema
     {
         Type = "string",
-        Pattern = "^(\\d{1,7}\\.)?([01]\\d|2[0-3]):([0-5]\\d):([0-5]\\d)(?:\\.(\\d{1,7}))?$"
-        //Example = new OpenApiString(DateTime.Now.ToString("d.HH:mm:ss.fffffff"))
+        Pattern = "^(\\d{1,7}\\.)?([01]\\d|2[0-3]):([0-5]\\d):([0-5]\\d)(?:\\.(\\d{1,7}))?$",
+        Example = new OpenApiString(DateTime.Now.ToString("d.HH:mm:ss.fffffff"))
     });
     options.MapType<DateTime>(() => new OpenApiSchema
     {
         Type = "string",
-        Example = new OpenApiString(DateTimeOffset.Now.ToString("yyyy-MM-ddTHH:mm:ss.FFFFFFF"))
+        Example = new OpenApiString(DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.FFFFFFF"))
     });
     options.MapType<DateTimeOffset>(() => new OpenApiSchema
     {
