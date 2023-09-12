@@ -12,8 +12,6 @@ namespace NetCoreShortCodes.API.Database
             _connectionString = connectionString;
         }
 
-        // TODO: review async for SQLite
-        // https://stackoverflow.com/questions/42982444/entity-framework-core-sqlite-async-requests-are-actually-synchronous
         public async Task<IDbConnection> CreateConnectionAsync()
         {
             var connection = new SqliteConnection(_connectionString);

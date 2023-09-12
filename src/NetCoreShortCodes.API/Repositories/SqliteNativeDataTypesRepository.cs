@@ -4,7 +4,9 @@ using NetCoreShortCodes.API.Models.Entity;
 
 namespace NetCoreShortCodes.API.Repositories
 {
-    // TODO: https://learn.microsoft.com/en-us/dotnet/standard/data/sqlite/async
+    // https://learn.microsoft.com/en-us/dotnet/standard/data/sqlite/async
+    // Async operations here are just for demonstration. See above link.
+
     public class SqliteNativeDataTypesRepository : ISqliteNativeDataTypesRepository
     {
         private readonly IDbConnectionFactory _connectionFactory;
@@ -98,6 +100,18 @@ namespace NetCoreShortCodes.API.Repositories
                 WHERE MyInteger = @MyInteger",
                 sqliteNativeDataTypes);
             return result == 1;
+        }
+
+        public async Task TruncateAsync()
+        {
+            using var connection = await _connectionFactory.CreateConnectionAsync();
+            var result = await connection.ExecuteAsync(@"DELETE FROM SqliteNativeDataTypes");
+        }
+
+        public void Truncate()
+        {
+            using var connection = _connectionFactory.CreateConnection();
+            var result = connection.Execute(@"DELETE FROM SqliteNativeDataTypes");
         }
     }
 }
