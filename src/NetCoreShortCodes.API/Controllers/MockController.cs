@@ -31,5 +31,17 @@ namespace NetCoreShortCodes.API.Controllers
 
             return StatusCode(statusCode, customResponse);
         }
+
+        /// <summary>
+        /// Throws a NotImplementedException having the optional message
+        /// </summary>
+        /// <param name="exceptionMessage"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        [HttpDelete]
+        public IActionResult Delete(string? exceptionMessage)
+        {
+            throw new NotImplementedException(exceptionMessage);
+        }
     }
 }
